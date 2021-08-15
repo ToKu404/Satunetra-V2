@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	<!-- insert your AIML categories here -->
+
+	<topic name="next">
+	    <category>
+    	    <pattern>LANJUTKAN</pattern>
+    	    <template>
+    	        <think><set name = "topic">register</set></think>
+    	        Halaman ini merupakan halaman registrasi. Kami akan meminta anda untuk memasukkan beberapa data diri anda. Untuk memulai atau melanjutkan kelangkah berikutnya usap layar dari kiri ke kanan.
+    	    </template>
+	    </category>
+	</topic>
+
+	<topic name="register">
+	    <category>
+    	    <pattern>NEXT</pattern>
+    	    <template>
+    	        <think><set name = "topic">name</set></think>
+    	        Silahkan menyebutkan nama anda
+    	    </template>
+	    </category>
+	</topic>
+
+	<topic name="name">
+	    <category>
+	        <pattern>NEXT</pattern>
+	        <template>
+	            <think><set name = "topic">gender</set></think>
+	            Silahkan menyebutkan jenis kelamin anda
+	        </template>
+        </category>
+	    <category>
+	        <pattern>*</pattern>
+	        <template>
+	            <think><set name = "nama"><star/></set></think>
+	            <star/>
+	        </template>
+        </category>
+	</topic>
+
+	<topic name="gender">
+	    <category>
+	        <pattern>NEXT</pattern>
+	        <template>
+	            <think><set name = "topic">old</set></think>
+	             Silahkan menyebutkan usia anda
+	        </template>
+        </category>
+        <category>
+	        <pattern>*</pattern>
+	        <template>
+	            #Maaf kami tidak dapat mengidentifikasi jawaban anda
+	        </template>
+        </category>
+	    <category>
+	        <pattern><set>genders</set></pattern>
+	        <template>
+	            <think><set name = "jk"><map name="genders"><star/></map></set></think>
+	            <get name = "jk"/>
+	        </template>
+        </category>
+        <category>
+            <pattern><set>genders</set> *</pattern>
+            <template>
+                <srai><formal><star/></formal></srai>
+            </template>
+        </category>
+        <category>
+            <pattern>* <set>genders</set></pattern>
+            <template>
+                <srai><formal><star index="2"/></formal></srai>
+            </template>
+        </category>
+        <category>
+            <pattern>* <set>genders</set> *</pattern>
+            <template>
+                <srai><formal><star index="2"/></formal></srai>
+            </template>
+        </category>
+	</topic>
+
+	<topic name="old">
+        <category>
+            <pattern>NEXT</pattern>
+            <template>
+                <think><set name = "topic">blind</set></think>
+                Silahkan menyebutkan jenis kebutaan anda dengan kata kunci "Total" atau "Sebagian"
+            </template>
+        </category>
+        <category>
+	        <pattern>*</pattern>
+	        <template>
+	            #Maaf kami tidak dapat mengidentifikasi jawaban anda
+	        </template>
+        </category>
+        <category>
+            <pattern><set>old</set></pattern>
+            <template>
+                <think><set name = "usia"><star/></set></think>
+                <star/>
+            </template>
+        </category>
+        <category>
+            <pattern><set>old</set> *</pattern>
+            <template>
+                <srai><formal><star/></formal></srai>
+            </template>
+        </category>
+        <category>
+            <pattern>* <set>old</set></pattern>
+            <template>
+                <srai><formal><star index="2"/></formal></srai>
+            </template>
+        </category>
+        <category>
+            <pattern>* <set>old</set> *</pattern>
+            <template>
+                <srai><formal><star index="2"/></formal></srai>
+            </template>
+        </category>
+	</topic>
+
+	<topic name="blind">
+        <category>
+            <pattern>NEXT</pattern>
+            <template>
+                <think><set name = "topic">finish</set></think>
+                Data anda telah diinput, anda bernama <get name="nama"/>, berjenis kelamin <get name="jk"/>, berusia <get name="usia"/> Tahun, dan mengalami kebutaan <get name="blind"/>. Katakan "Ya" untuk menyimpan data anda, dan "Tidak" untuk keluar tanpa menyimpan data.
+            </template>
+        </category>
+        <category>
+	        <pattern>*</pattern>
+	        <template>
+	            #Maaf kami tidak dapat mengidentifikasi jawaban anda
+	        </template>
+        </category>
+        <category>
+            <pattern><set>blind</set></pattern>
+            <template>
+                <think><set name = "blind"><map name="blind"><star/></map></set></think>
+	            <get name = "blind"/>
+            </template>
+        </category>
+        <category>
+            <pattern><set>blind</set> *</pattern>
+            <template>
+                <srai><formal><star/></formal></srai>
+            </template>
+        </category>
+        <category>
+            <pattern>* <set>blind</set></pattern>
+            <template>
+                <srai><formal><star index="2"/></formal></srai>
+            </template>
+        </category>
+        <category>
+            <pattern>* <set>blind</set> *</pattern>
+            <template>
+                <srai><formal><star index="2"/></formal></srai>
+            </template>
+        </category>
+	</topic>
+
+	<topic name="finish">
+	    <category>
+	        <pattern><set>yes</set></pattern>
+	        <template>
+	            #<star/>#Selamat data anda berhasil disimpan. Sebelum melanjutkan penggunaan Aplikasi, saya akan menjelaskan tentang panduan penggunaan terlebih dahulu. Setelah intruksi panduan ini berakhir kamu akan dialihkan ke halaman awal konsultasi, kamu dapat menceritakan apapun yang ingin kamu ceritakan mulai dari bagaimana harimu hari ini?, atau kamu dapat langsung bertanya tentang kondisi mental yang kamu rasakan saat ini, kami akan berusaha memberikan solusi yang tepat untuk mengatasi kecemasan, stress, kehilangan percaya diri, dan insomnia. Untuk melanjutkan ke menu konsultasi usap layar dari kiri ke kanan
+	        </template>
+        </category>
+        <category>
+	        <pattern><set>no</set></pattern>
+	        <template>
+	           #<star/>#
+	           <srai>close0</srai>
+	        </template>
+        </category>
+        <category>
+            <pattern>*</pattern>
+            <template>Harap gunakan kata kunci ya atau tidak</template>
+        </category>
+         <category>
+            <pattern><set>yes</set> *</pattern>
+            <template>
+                <srai><formal><star/></formal></srai>
+            </template>
+        </category>
+        <category>
+            <pattern>* <set>yes</set></pattern>
+            <template>
+                <srai><formal><star index="2"/></formal></srai>
+            </template>
+        </category>
+        <category>
+            <pattern>* <set>yes</set> *</pattern>
+            <template>
+                <srai><formal><star index="2"/></formal></srai>
+            </template>
+        </category>
+        <category>
+            <pattern><set>no</set> *</pattern>
+            <template>
+                <srai><formal><star/></formal></srai>
+            </template>
+        </category>
+        <category>
+            <pattern>* <set>no</set></pattern>
+            <template>
+                <srai><formal><star index="2"/></formal></srai>
+            </template>
+        </category>
+        <category>
+            <pattern>* <set>no</set> *</pattern>
+            <template>
+                <srai><formal><star index="2"/></formal></srai>
+            </template>
+        </category>
+	</topic>
+</aiml>

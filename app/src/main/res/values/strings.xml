@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Satunetra</string>
+    <string name="room_name">Ruang Satunetra</string>
+    <string name="none">...</string>
+    <string name="app_title_top">SATU</string>
+    <string name="app_title_bottom">NETRA</string>
+    <string name="welcome">Selamat Datang</string>
+    <string name="nama">Nama</string>
+    <string name="jk">Jenis Kelamin</string>
+    <string name="usia">Usia</string>
+    <string name="buta">Jenis Kebutaan</string>
+    <string name="daftar">Daftar</string>
+    <string name="lanjutkan">Lanjutkan</string>
+
+    <string name="online">Online</string>
+    <string name="offline">Offline</string>
+
+
+</resources>

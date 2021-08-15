@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	<!-- insert your AIML categories here -->
+
+    <topic name="end">
+          <category>
+            <pattern>*</pattern>
+            <template>Maaf saya kurang paham maksud anda, harap gunakan kata kunci "ya", "tidak" atau "riwayat"</template>
+        </category>
+        <category>
+            <pattern><set>no</set></pattern>
+            <template>
+                 <think><set name = "topic">welcome</set></think>
+                 <srai>close2</srai>
+            </template>
+        </category>
+         <category>
+            <pattern><set>yes</set></pattern>
+            <template>
+                <srai>HELP</srai>
+            </template>
+        </category>
+        <category>
+            <pattern><set>yes</set> *</pattern>
+            <template>
+                <srai><formal><star/></formal></srai>
+            </template>
+        </category>
+        <category>
+            <pattern>* <set>yes</set></pattern>
+            <template>
+                <srai><formal><star index="2"/></formal></srai>
+            </template>
+        </category>
+        <category>
+            <pattern>* <set>yes</set> *</pattern>
+            <template>
+                <srai><formal><star index="2"/></formal></srai>
+            </template>
+        </category>
+        <category>
+            <pattern><set>no</set> *</pattern>
+            <template>
+                <srai><formal><star/></formal></srai>
+            </template>
+        </category>
+        <category>
+            <pattern>* <set>no</set></pattern>
+            <template>
+                <srai><formal><star index="2"/></formal></srai>
+            </template>
+        </category>
+        <category>
+            <pattern>* <set>no</set> *</pattern>
+            <template>
+                <srai><formal><star index="2"/></formal></srai>
+            </template>
+        </category>
+         <category>
+            <pattern>RIWAYAT</pattern>
+            <template>
+                riwayat
+            </template>
+        </category>
+        <category>
+            <pattern>RIWAYAT *</pattern>
+            <template>
+                <srai>riwayat</srai>
+            </template>
+        </category>
+        <category>
+            <pattern>* RIWAYAT</pattern>
+            <template>
+                <srai>riwayat</srai>
+            </template>
+        </category>
+        <category>
+            <pattern>* RIWAYAT *</pattern>
+            <template>
+                <srai>riwayat</srai>
+            </template>
+        </category>
+    </topic>
+</aiml>

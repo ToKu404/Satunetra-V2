@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	<!-- insert your AIML categories here -->
+	<category>
+	    <pattern>REGISTER</pattern>
+	    <template>
+	        <think><set name = "topic">next</set></think>
+	        Selamat datang di satunetra, untuk bicara tekan bagian tengah layar. Ucapkan lanjutkan untuk menuju ke menu pendaftaran
+	    </template>
+	</category>
+	<category>
+	    <pattern>HELP</pattern>
+        <template>
+            <think><set name = "topic">feeling</set></think>
+             Silakan sampaikan keluhanmu dan gunakan kata kunci seperti “Cemas”, “Stress”, “Insomnia”, “Susah Tidur”, dan “Khawatir”.
+        </template>
+    </category>
+     <category>
+        <pattern>W1</pattern>
+        <template>
+            <think><set name = "topic">feeling</set></think>
+            <random>
+                <li>Hai %s! senang mendengarmu berada disini, Saya adalah Sobat Netra, saya merupakan sahabat yang akan membantu kamu memanejemen kesehatan mental kamu. Silakan menyebutkan keluhan atau hal hal yang sering mengganggumu akhir akhir ini. Sebelumnya gunakan kata kunci seperti “Cemas”, “Stress”, “Insomnia”, “Susah Tidur”, dan “Khawatir”. </li>
+                <li>#Pagi#Siang#Sore#Malam# %s! Saya adalah Sobat Netra, saya merupakan sahabat yang akan membantu kamu memanejemen kesehatan mental kamu. Silakan menyebutkan keluhan atau hal hal yang sering mengganggumu akhir akhir ini. Sebelumnya gunakan kata kunci seperti “Cemas”, “Stress”, “Insomnia”, “Susah Tidur”, dan “Khawatir”. </li>
+                <li>Hai %s, Senang berjumpa dengan mu,  Saya adalah Sobat Netra, saya merupakan sahabat yang akan membantu kamu memanejemen kesehatan mental kamu. Silakan menyebutkan keluhan atau hal hal yang sering mengganggumu akhir akhir ini. Sebelumnya gunakan kata kunci seperti “Cemas”, “Stress”, “Insomnia”, “Susah Tidur”, dan “Khawatir”. </li>
+                <li>#Selamat pagi#Selamat siang#Selamat sore#Selamat malam# %s! Saya adalah Sobat Netra, saya merupakan sahabat yang akan membantu kamu memanejemen kesehatan mental kamu. Silakan menyebutkan keluhan atau hal hal yang sering mengganggumu akhir akhir ini. Sebelumnya gunakan kata kunci seperti “Cemas”, “Stress”, “Insomnia”, “Susah Tidur”, dan “Khawatir”. </li>
+            </random>
+        </template>
+    </category>
+
+    <category>
+        <pattern>W2</pattern>
+        <template>
+            <think><set name = "topic">kabar</set></think>
+            <random>
+                <li>Hai %s! gimana kabarmu hari ini?</li>
+                <li>Halo %s! apa kabar</li>
+            </random>
+        </template>
+    </category>
+
+    <category>
+        <pattern>WOFFLINE</pattern>
+        <template>
+            <think><set name = "topic">offline</set></think>
+            Sepertinya perangkat anda tidak tersambung ke internet, katakan "Ya" Untuk memutar musik mode offline, dan katakan "Tidak" Untuk menutup aplikasi.
+        </template>
+    </category>
+
+    <category>
+    <pattern>CLOSE0</pattern>
+    <template>
+        Terima kasih telah menggunakan satu netra aplikasi akan menutup dalam 3 detik.
+    </template>
+     </category>
+    <category>
+        <pattern>CLOSE1</pattern>
+        <template>
+           Baiklah tampaknya kamu butuh istirahat dan waktu sendiri, manfaatkan waktumu untuk menjernihkan pikiran. Jika kamu ingin mengulang sesi konsultasi usap layar dari atas kebawah dan jika kamu ingin keluar dari aplikasi silakan mengusap layar dari kiri ke kanan. Terimakasih telah menggunakan Satunetra sebagai sahabat mu.
+        </template>
+    </category>
+    <category>
+        <pattern>CLOSE2</pattern>
+        <template>
+           Sebelum keluar dari aplikasi ini kami sangat mengharapkan anda memberikan ulasan mengenai aplikasi ini, seperti bagaimana perasaan anda setelah konsultasi. Untuk keluar tanpa memberi ulasan geser aplikasi dari kiri kekanan
+        </template>
+    </category>
+
+    <category>
+        <pattern>END</pattern>
+        <template>
+            <think><set name = "topic">end</set></think>
+            Sesi terapi anda telah berakhir, ucapkan "Ya" jika anda ingin melanjutkan sesi obrolan, Ucapkan tidak untuk menutup aplikasi, dan
+            ucapkan "Riwayat" jika anda ingin mengakses riwayat terapi anda.
+        </template>
+    </category>
+</aiml>
