@@ -113,7 +113,6 @@ public class NetworkService extends Service {
             handler.postDelayed(periodicUpdate, 1 * 1000 - SystemClock.elapsedRealtime() % 1000);
             Intent broadcastIntent = new Intent();
             broadcastIntent.setAction(ChatActivity.BroadcastStringForAction);
-            System.out.println(isNetworkAvailable());
             broadcastIntent.putExtra("online_status", "" + (isOnline(NetworkService.this)&&isNetworkAvailable()));
             sendBroadcast(broadcastIntent);
         }

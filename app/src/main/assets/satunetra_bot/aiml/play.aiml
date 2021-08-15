@@ -194,5 +194,60 @@
         </category>
     </topic>
 
+    <topic name="offline">
+    	    <category>
+    	        <pattern><set>yes</set></pattern>
+    	        <template>
+    	            #<star/>#Mohon menunggu musik offline akan diputar dalam 5 detik
+    	        </template>
+            </category>
+            <category>
+    	        <pattern><set>no</set></pattern>
+    	        <template>
+    	           #<star/>#
+    	           <srai>close0</srai>
+    	        </template>
+            </category>
+            <category>
+                <pattern>*</pattern>
+                <template>Harap gunakan kata kunci ya atau tidak</template>
+            </category>
+             <category>
+                <pattern><set>yes</set> *</pattern>
+                <template>
+                    <srai><formal><star/></formal></srai>
+                </template>
+            </category>
+            <category>
+                <pattern>* <set>yes</set></pattern>
+                <template>
+                    <srai><formal><star index="2"/></formal></srai>
+                </template>
+            </category>
+            <category>
+                <pattern>* <set>yes</set> *</pattern>
+                <template>
+                    <srai><formal><star index="2"/></formal></srai>
+                </template>
+            </category>
+            <category>
+                <pattern><set>no</set> *</pattern>
+                <template>
+                    <srai><formal><star/></formal></srai>
+                </template>
+            </category>
+            <category>
+                <pattern>* <set>no</set></pattern>
+                <template>
+                    <srai><formal><star index="2"/></formal></srai>
+                </template>
+            </category>
+            <category>
+                <pattern>* <set>no</set> *</pattern>
+                <template>
+                    <srai><formal><star index="2"/></formal></srai>
+                </template>
+            </category>
+    	</topic>
 
 </aiml>

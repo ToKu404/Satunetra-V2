@@ -21,9 +21,9 @@
             <think><set name = "topic">feeling</set></think>
             <random>
                 <li>Hai %s! senang mendengarmu berada disini, Saya adalah Sobat Netra, saya merupakan sahabat yang akan membantu kamu memanejemen kesehatan mental kamu. Silakan menyebutkan keluhan atau hal hal yang sering mengganggumu akhir akhir ini. Sebelumnya gunakan kata kunci seperti “Cemas”, “Stress”, “Insomnia”, “Susah Tidur”, dan “Khawatir”. </li>
-                <li>#Pagi#Siang#Sore#Malam# %s! Saya adalah Sobat Netra, saya merupakan sahabat yang akan membantu kamu memanejemen kesehatan mental kamu. Silakan menyebutkan keluhan atau hal hal yang sering mengganggumu akhir akhir ini. Sebelumnya gunakan kata kunci seperti “Cemas”, “Stress”, “Insomnia”, “Susah Tidur”, dan “Khawatir”. </li>
+                <li>$Pagi#Siang#Sore#Malam# %s! Saya adalah Sobat Netra, saya merupakan sahabat yang akan membantu kamu memanejemen kesehatan mental kamu. Silakan menyebutkan keluhan atau hal hal yang sering mengganggumu akhir akhir ini. Sebelumnya gunakan kata kunci seperti “Cemas”, “Stress”, “Insomnia”, “Susah Tidur”, dan “Khawatir”. </li>
                 <li>Hai %s, Senang berjumpa dengan mu,  Saya adalah Sobat Netra, saya merupakan sahabat yang akan membantu kamu memanejemen kesehatan mental kamu. Silakan menyebutkan keluhan atau hal hal yang sering mengganggumu akhir akhir ini. Sebelumnya gunakan kata kunci seperti “Cemas”, “Stress”, “Insomnia”, “Susah Tidur”, dan “Khawatir”. </li>
-                <li>#Selamat pagi#Selamat siang#Selamat sore#Selamat malam# %s! Saya adalah Sobat Netra, saya merupakan sahabat yang akan membantu kamu memanejemen kesehatan mental kamu. Silakan menyebutkan keluhan atau hal hal yang sering mengganggumu akhir akhir ini. Sebelumnya gunakan kata kunci seperti “Cemas”, “Stress”, “Insomnia”, “Susah Tidur”, dan “Khawatir”. </li>
+                <li>$Selamat pagi#Selamat siang#Selamat sore#Selamat malam# %s! Saya adalah Sobat Netra, saya merupakan sahabat yang akan membantu kamu memanejemen kesehatan mental kamu. Silakan menyebutkan keluhan atau hal hal yang sering mengganggumu akhir akhir ini. Sebelumnya gunakan kata kunci seperti “Cemas”, “Stress”, “Insomnia”, “Susah Tidur”, dan “Khawatir”. </li>
             </random>
         </template>
     </category>
@@ -34,7 +34,8 @@
             <think><set name = "topic">kabar</set></think>
             <random>
                 <li>Hai %s! gimana kabarmu hari ini?</li>
-                <li>Halo %s! apa kabar</li>
+                <li>Halo %s! apa Kabar</li>
+                <li>$Pagi#Siang#Sore#Malam# %s! Apa kabar></li>
             </random>
         </template>
     </category>

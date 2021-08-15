@@ -54,7 +54,7 @@
                 android:id="@+id/v_online"
                 android:layout_width="8dp"
                 android:layout_height="8dp"
-                android:background="@drawable/circle_shape_orange"
+                android:background="@drawable/circle_shape"
                 app:layout_constraintStart_toEndOf="@id/iv_user"
                 app:layout_constraintTop_toBottomOf="@id/tv_satuname"
                 android:layout_marginLeft="10dp"
@@ -63,7 +63,7 @@
                 android:id="@+id/tv_online"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="online"
+                android:text="check connection ..."
                 android:textColor="@color/offlineOrange"
                 android:fontFamily="@font/poppins_medium"
                 app:layout_constraintTop_toTopOf="@id/v_online"
@@ -93,32 +93,35 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
-
-    <LinearLayout
-        android:id="@+id/ll_voice_chat"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:orientation="vertical"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/bottom_shape"
-        android:paddingVertical="10dp"
-        android:gravity="center">
-        <ImageView
-            android:id="@+id/iv_mic_chat"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_baseline_mic_24"
-            app:tint="@color/white"
-            />
-        <ImageView
-            android:id="@+id/iv_timing"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_baseline_timer_24"
-            app:tint="@color/white"
-            android:visibility="gone"
-            />
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_voice_chat"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:orientation="vertical"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/bottom_shape"
+            android:paddingVertical="10dp"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/iv_mic_chat"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_baseline_mic_24"
+                app:tint="@color/white"
+                />
+            <TextView
+                android:id="@+id/tv_timer"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:text="2"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="23sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:visibility="gone"
+                />
+        </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
