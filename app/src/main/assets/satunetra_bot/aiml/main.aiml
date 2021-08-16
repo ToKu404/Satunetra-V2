@@ -64,7 +64,7 @@
     <topic name="kabar">
         <category>
             <pattern>*</pattern>
-            <template>Mohon maaf saya kurang mengerti dengan maksud anda</template>
+            <template>Mohon maaf saya kurang mengerti dengan maksud anda, mohon sampaikan perasaan anda saat ini</template>
         </category>
         <category>
             <pattern><set>good</set></pattern>
@@ -121,32 +121,27 @@
 
     <topic name="good">
         <category>
-            <pattern><set>no</set></pattern>
-            <template>
-                #NO#<srai>close1</srai>
-            </template>
-        </category>
+                <pattern><set>no</set></pattern>
+                <template>
+                     <think><set name = "topic">welcome</set></think>
+                     #NO#<srai>close1</srai>
+                </template>
+            </category>
         <category>
             <pattern>*</pattern>
             <template>Maaf saya kurang paham maksud anda</template>
         </category>
-        <category>
-            <pattern><set>no</set></pattern>
-            <template>
-                 <think><set name = "topic">welcome</set></think>
-                 <srai>close1</srai>
-            </template>
-        </category>
+
          <category>
             <pattern><set>yes</set></pattern>
             <template>
-                <srai>HELP</srai>
+                #YES#<srai>HELP</srai>
             </template>
         </category>
         <category>
             <pattern><set>yes</set> *</pattern>
             <template>
-                #YES#<srai><formal><star/></formal></srai>
+                <srai><formal><star/></formal></srai>
             </template>
         </category>
         <category>

@@ -72,8 +72,7 @@
         <pattern>END</pattern>
         <template>
             <think><set name = "topic">end</set></think>
-            Sesi terapi anda telah berakhir, ucapkan "Ya" jika anda ingin melanjutkan sesi obrolan, Ucapkan tidak untuk menutup aplikasi, dan
-            ucapkan "Riwayat" jika anda ingin mengakses riwayat terapi anda.
+            Sesi terapi anda telah berakhir, ucapkan "Ya" jika anda ingin melanjutkan sesi obrolan, Ucapkan "Tidak" untuk menutup aplikasi, dan ucapkan "Riwayat" jika anda ingin mengakses riwayat terapi anda.
         </template>
     </category>
 

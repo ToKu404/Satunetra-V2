@@ -3,7 +3,7 @@ package com.example.satunetra_bot_test.model;
 import java.util.List;
 
 public class Instruction {
-    private List<String> listUrl;
+    private final List<String> listUrl;
     private String value;
 
     public Instruction(String value,  List<String> listUrl) {

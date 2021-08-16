@@ -10,8 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.satunetra_bot_test.R;
 import com.example.satunetra_bot_test.model.Message;
-
-import org.jetbrains.annotations.NotNull;
+import com.google.firebase.database.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

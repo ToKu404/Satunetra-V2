@@ -300,7 +300,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnTouchL
                 String repeat = "Saya ulang, jenis kelamin anda adalah " + jk;
                 startSpeak(repeat);
             }else {
-                startSpeak(respond.substring(1,respond.length()));
+                startSpeak(respond.substring(1));
             }
 
         }
@@ -313,7 +313,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnTouchL
                 String repeat = "Saya ulang, usia anda adalah " + respond + " Tahun";
                 startSpeak(repeat);
             }else {
-                startSpeak(respond.substring(1,respond.length()));
+                startSpeak(respond.substring(1));
             }
 
         }
@@ -326,14 +326,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnTouchL
                 String repeat = "Saya ulang, anda mengalami kebutaan " + statusKebutaan;
                 startSpeak(repeat);
             }else {
-                startSpeak(respond.substring(1,respond.length()));
+                startSpeak(respond.substring(1));
             }
         }
         else if(deep==6){
             sendMessage(string);
             if(respond.trim().charAt(0)=='#'){
                 String tempMessage = respond;
-                String[] yorn = tempMessage.substring(1,tempMessage.length()).split("#");
+                String[] yorn = tempMessage.substring(1).split("#");
                 startSpeak(yorn[1]);
                 if(yorn[0].equalsIgnoreCase("YA")){
                     saveToDB();

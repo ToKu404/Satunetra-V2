@@ -11,13 +11,13 @@
             <pattern><set>no</set></pattern>
             <template>
                  <think><set name = "topic">welcome</set></think>
-                 <srai>close2</srai>
+                 #NO#<srai>close2</srai>
             </template>
         </category>
          <category>
             <pattern><set>yes</set></pattern>
             <template>
-                <srai>HELP</srai>
+                #YES#<srai>HELP</srai>
             </template>
         </category>
         <category>
@@ -59,7 +59,7 @@
          <category>
             <pattern>RIWAYAT</pattern>
             <template>
-                riwayat
+                #HISTORY#Riwayat
             </template>
         </category>
         <category>

@@ -40,6 +40,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.annotations.NotNull;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
@@ -47,12 +48,13 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class ChatActivity extends AppCompatActivity implements View.OnTouchListener {
@@ -105,20 +107,18 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
     private View vStatus;
     private TextView tvStatus;
 
-    private boolean allowCheck;
     private boolean isConnected;
     //is user first init or not
     private boolean firstInit;
     private String instructionKey;
     private String feelKey;
     private boolean allowClose;
-    private boolean nowSpeak;
     private boolean allowPlay;
+    private boolean afterPlay;
 
     //const
     private static final int SWIPE_THRESHOLD = 100;
     private static final int SWIPE_VELOCITY_THRESHOLD = 100;
-    ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,17 +134,16 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
         deep = 0;
         gestureDetector = new GestureDetector(this, new GestureListener());
         firstInit = false;
+        afterPlay = false;
 
         botHelper = new BotHelper(this);
         mIntentFilter = new IntentFilter();
         mIntentFilter.addAction(BroadcastStringForAction);
-        allowCheck = true;
         isTimer = false;
         isConnected = false;
         allowClose = false;
         allowPlay = false;
         allowSpeak = false;
-        nowSpeak = false;
         instructionKey = "";
         feelKey = "";
 
@@ -181,11 +180,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
 
         try{
             new AsyncAction().execute();
-
         }catch (Exception e) {
             e.printStackTrace();
         }
-//        registerReceiver(NetworkReciever,mIntentFilter);
 
     }
 
@@ -279,6 +276,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
         }
     }
 
+
     //configure SR
     private void configureSpeechRecognition() {
         SpeechHelper helper = new SpeechHelper(this);
@@ -309,12 +307,19 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
             @Override
             public void onStop(String utteranceId, boolean interrupted) {
                 allowSpeak = true;
-                nowSpeak = false;
 
                 ChatActivity.this.runOnUiThread(new Runnable() {
                     public void run() {
                         if (allowPlay) {
                             letsPlaying();
+                        }
+                        if(allowClose&&deep==8){
+                            new Handler().postDelayed(new Runnable(){
+                                @Override
+                                public void run() {
+                                    System.exit(1);
+                                    finish();
+                                }},3000);
                         }
                         refreshSpeechUI(false);
                     }
@@ -325,12 +330,19 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
             @Override
             public void onDone(String utteranceId) {
                 allowSpeak = true;
-                nowSpeak = false;
 
                 ChatActivity.this.runOnUiThread(new Runnable() {
                     public void run() {
                         if (allowPlay) {
                             letsPlaying();
+                        }
+                        if(allowClose&&deep==8){
+                            new Handler().postDelayed(new Runnable(){
+                                @Override
+                                public void run() {
+                                    System.exit(1);
+                                    finish();
+                                }},3000);
                         }
                         refreshSpeechUI(false);
                     }
@@ -346,17 +358,16 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
 
 
     //save consultation history
-//    private void saveConsultationHistory() {
-//        Calendar calendar = Calendar.getInstance();
-//        String date = calendar.get(Calendar.DATE) + " " ;
-//        date += calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, new Locale("id", "ID")) + " ";
-//        date += String.valueOf(calendar.get(Calendar.YEAR));
-//        String instructionValue = tagMap.get(feelKey).getValue();
-//        String feelValue = tagMap.get(feelKey).getChild().get(instructionKey).getValue();
-//        helper.insertConsul(instructionValue, feelValue, date);
-//    }
+    private void saveConsultationHistory() {
+        Calendar calendar = Calendar.getInstance();
+        String date = calendar.get(Calendar.DATE) + " " ;
+        date += calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, new Locale("id", "ID")) + " ";
+        date += String.valueOf(calendar.get(Calendar.YEAR));
+        String instructionValue = tagMap.get(feelKey).getValue();
+        String feelValue = tagMap.get(feelKey).getChild().get(instructionKey).getValue();
+        helper.insertConsul(feelValue, instructionValue, date);
+    }
 
-;
     //start speak
     private void startSpeak(String string) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -451,11 +462,11 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
     private void configureResponse() {
         if (!isConnected) {
             if (deep == 0) {
-                deep++;
+                deep=1;
             }
             if (deep == 1) {
                 if (respond.trim().charAt(0) == '#') {
-                    String[] yorn = respond.substring(1, respond.length()).split("#");
+                    String[] yorn = respond.substring(1).split("#");
                     respond = yorn[1];
                     if (yorn[0].equalsIgnoreCase("YA")) {
                         allowPlay = true;
@@ -464,13 +475,12 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
                     }
                 }
             }
-
         }
         //online
         else {
             if (deep == 0) {
                 if (respond.charAt(0) == '$') {
-                    String[] greetings = respond.substring(1, respond.length()).split("#");
+                    String[] greetings = respond.substring(1).split("#");
                     int hour = 0;
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                         hour = LocalDateTime.now().getHour();
@@ -495,9 +505,10 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
             }
             if (deep == 1) {
                 if (respond.trim().charAt(0) == '#') {
-                    String[] yorn = respond.substring(1, respond.length()).split("#");
+                    String[] yorn = respond.substring(1).split("#");
                     respond = yorn[1];
                     if (yorn[0].equalsIgnoreCase("GOOD")) {
+                        System.out.println("GODD NEW");
                         deep = 2;
                     } else if (yorn[0].equalsIgnoreCase("BAD")) {
                         deep = 3;
@@ -505,20 +516,22 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
                 }
             }
             if (deep == 2) {
-                System.out.println("YESUI");
                 if (respond.trim().charAt(0) == '#') {
-                    String[] yorn = respond.substring(1, respond.length()).split("#");
+                    String[] yorn = respond.substring(1).split("#");
                     respond = yorn[1];
                     if (yorn[0].equalsIgnoreCase("YES")) {
+                        System.out.println("KONTOLO");
                         deep = 3;
                     } else {
+                        System.out.println("KAYUS");
                         allowClose = true;
                     }
                 }
             }
             if (deep == 3) {
+                System.out.println("ANJU");
                 if (respond.trim().charAt(0) == '#') {
-                    String[] yorn = respond.substring(1, respond.length()).split("#");
+                    String[] yorn = respond.substring(1).split("#");
                     respond = yorn[1];
                     if (yorn[0].equalsIgnoreCase("a01")) {
                         feelKey = "a01";
@@ -534,7 +547,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
             if (deep == 4) {
                 System.out.println("B");
                 if (respond.trim().charAt(0) == '#') {
-                    String[] yorn = respond.substring(1, respond.length()).split("#");
+                    String[] yorn = respond.substring(1).split("#");
                     respond = yorn[1];
                     if (yorn[0].equalsIgnoreCase("YES")) {
                         deep = 5;
@@ -546,7 +559,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
             if (deep == 5) {
                 System.out.println("ANJING");
                 if (respond.trim().charAt(0) == '#') {
-                    String[] yorn = respond.substring(1, respond.length()).split("#");
+                    String[] yorn = respond.substring(1).split("#");
                     respond = yorn[1];
                     if (feelKey.equals("a01")) {
                         if (yorn[0].equalsIgnoreCase("b01")) {
@@ -590,13 +603,36 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
                         }
                     }
                 }
+            }else if(deep==6){
+                if(afterPlay){
+                    allowClose = true;
+                    if (respond.trim().charAt(0) == '#') {
+                        String[] yorn = respond.substring(1).split("#");
+                        respond = yorn[1];
+                        if (yorn[0].equalsIgnoreCase("YES")) {
+                            deep = 3;
+                        } else if(yorn[0].equalsIgnoreCase("NO")) {
+                            allowClose = true;
+                            deep = 7;
+                        } else if(yorn[0].equalsIgnoreCase("HISTORY")){
+                            afterPlay = false;
+                            respond = helper.readHistory();
+                            allowClose = true;
+                        }
+                    }
+                }
+            }else if (deep==7){
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference reference = database.getReference("ulasan");
+                reference.push().setValue(userMessage);
+                respond = "Terima kasih, Aplikasi satunetra akan menutup dalam 3 detik, sampai jumpa lagi";
+                deep = 8;
             }
         }
     }
 
     private void letsPlaying() {
         System.out.println("TERPANGGIL");
-        ;
         isTimer = true;
         tvTimer.setVisibility(View.VISIBLE);
         ivMic.setVisibility(View.GONE);
@@ -618,17 +654,43 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
                     playIntent.putExtra("type", tagMap.get(feelKey).getChild().get(instructionKey).getValue());
                 } else {
                     playIntent.putExtra("connected", "offline");
+                    playIntent.putExtra("type", "Musik Offline");
                 }
                 startActivity(playIntent);
+                afterPlay = true;
                 cTimer.cancel();
                 tvTimer.setVisibility(View.GONE);
                 ivMic.setVisibility(View.VISIBLE);
-//                afterInstruction =true;
             }
         };
         cTimer.start();
     }
 
+    @Override
+    protected void onStart() {
+        allowPlay = false;
+        if(cTimer!=null)
+            cTimer.cancel();
+        isTimer = false;
+        if(afterPlay){
+            if(isConnected){
+                allowShow = false;
+                saveConsultationHistory();
+                deep = 6;
+                userMessage = "END";
+                sendMessage();
+            }else{
+                allowClose = false;
+                deep = 3;
+                try{
+                    new AsyncAction().execute();
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        super.onStart();
+    }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
@@ -642,12 +704,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
     class GestureListener extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
-            System.out.println("DITEKAN");
-            System.out.println(allowSpeak);
-            if (allowSpeak && !allowPlay && !allowClose) {
+            if (allowSpeak && (!allowPlay && !allowClose || deep>=6)) {
                 refreshSpeechUI(true);
                 speechRecognizer.startListening(speechIntent);
-                refreshSpeechUI(false);
             } else if (!allowSpeak) {
                 tts.stop();
             }
@@ -665,7 +724,14 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
                         //swipe from left to right
                         if (diffX > 0) {
                             if (allowClose) {
-                                finish();
+                                if(deep==8){
+                                    userMessage = "CLOSE0";
+                                    allowShow = false;
+                                    sendMessage();
+                                }else{
+                                    finish();
+                                }
+
                             }
                         }
                         result = true;
@@ -676,6 +742,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
                             if(allowClose){
                                 userMessage = "HELP";
                                 allowShow = false;
+                                allowClose=false;
                                 deep = 3;
                                 sendMessage();
                             }
@@ -704,7 +771,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
                 int timeoutConnection = 2000;
                 HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
 
-                int timeoutSocket = 7000;
+                int timeoutSocket = 4000;
                 HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
                 DefaultHttpClient httpClient = new DefaultHttpClient(httpParameters);
                 try {
@@ -723,17 +790,21 @@ public class ChatActivity extends AppCompatActivity implements View.OnTouchListe
         protected void onPostExecute(String result) {
             if (isConnected) {
                 setOnline();
-                if (firstInit) {
-                    userMessage = "W1";
-                } else {
-                    userMessage = "W2";
+                if(deep==0){
+                    if (firstInit) {
+                        userMessage = "W1";
+                    } else {
+                        userMessage = "W2";
+                    }
+                }else{
+                    deep = 3;
+                    userMessage = "HELP";
                 }
             } else {
                 setOffline();
                 userMessage = "WOFFLINE";
             }
             allowShow = false;
-            allowCheck = false;
             sendMessage();
         }
     }

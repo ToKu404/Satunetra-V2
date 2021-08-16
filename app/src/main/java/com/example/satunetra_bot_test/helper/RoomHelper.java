@@ -35,7 +35,7 @@ public class RoomHelper {
             temp.append("Anda Merasa ").append(riwayat.getFeel());
             temp.append(" Dan Kami memutarkan Anda ").append(riwayat.getInstruction()).append(" .\n");
         }
-        temp.append("\nUcapkan \"Ya\" jika anda ingin melanjutkan sesi obrolan. Jika anda ingin berhenti menggunakan aplikasi usap layar dari kiri ke kanan.");
+        temp.append("Untuk melanjutkan sesi obrolan usap layar dari atas ke bawah, dan untuk keluar dari aplikasi usap layar dari kiri ke kanan");
         return temp.toString();
     }
 
