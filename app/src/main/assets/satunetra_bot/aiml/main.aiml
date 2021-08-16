@@ -2,12 +2,6 @@
 <aiml version="2.0">
        <topic name="offline">
         <category>
-            <pattern><set>no</set></pattern>
-            <template>
-                <srai>close1</srai>
-            </template>
-        </category>
-        <category>
             <pattern>*</pattern>
             <template>Maaf saya kurang paham maksud anda</template>
         </category>
@@ -15,14 +9,14 @@
             <pattern><set>no</set></pattern>
             <template>
                  <think><set name = "topic">welcome</set></think>
-                 <srai>close1</srai>
+                 #<star/>#<srai>close1</srai>
             </template>
         </category>
          <category>
             <pattern><set>yes</set></pattern>
             <template>
                 <think><set name = "topic">end</set></think>
-                Saya akan memutar musik untuk anda dalam 5 detik, silahkan cari posisi duduk yang nyaman.
+                #<star/>#Saya akan memutar musik untuk anda dalam 5 detik, silahkan cari posisi duduk yang nyaman.
             </template>
         </category>
         <category>
@@ -77,14 +71,14 @@
 
             <template>
                  <think><set name = "topic">good</set></think>
-                Senang mendengarnya, apakah ada yang bisa saya bantu? ucapkan ya atau tidak
+                #good#Senang mendengarnya, apakah ada yang bisa saya bantu? ucapkan ya atau tidak
             </template>
         </category>
         <category>
             <pattern><set>bad</set></pattern>
             <template>
                 <think><set name = "topic">feeling</set></think>
-                Tenang saja saya disini untuk membantumu. Silakan menyebutkan keluhan atau hal hal yang sering mengganggumu akhir akhir ini. Sebelumnya gunakan kata kunci seperti “Cemas”, “Stress”, “Insomnia”, “Susah Tidur”, dan “Khawatir”.
+                #bad#Tenang saja saya disini untuk membantumu. Silakan menyebutkan keluhan atau hal hal yang sering mengganggumu akhir akhir ini. Sebelumnya gunakan kata kunci seperti “Cemas”, “Stress”, “Insomnia”, “Susah Tidur”, dan “Khawatir”.
             </template>
         </category>
         <category>
@@ -129,7 +123,7 @@
         <category>
             <pattern><set>no</set></pattern>
             <template>
-                <srai>close1</srai>
+                #NO#<srai>close1</srai>
             </template>
         </category>
         <category>
@@ -152,7 +146,7 @@
         <category>
             <pattern><set>yes</set> *</pattern>
             <template>
-                <srai><formal><star/></formal></srai>
+                #YES#<srai><formal><star/></formal></srai>
             </template>
         </category>
         <category>
@@ -203,13 +197,13 @@
                 <think><set name = "topic">yorn</set></think>
                 <think><set name = "feel"><map name="feel"><star/></map></set></think>
                 <condition name= "feel" value = "a02">
-                    Tampaknya kamu sedang dalam kondisi tekanan. Well, Stress adalah hal yang bisa terjadi kepada siapapun termasuk kamu. Stress sangat berpengaruh pada produktivitasmu. Tnamkan dalam pikiran dan hatimu bahwa tidak apa apa untuk tidak baik baik saja. Kamu hanya perlu menerima kondisi saat ini dan menguransi stressmu. Tapi perlu kamu ketahui bahwa stress dapat diatasi dengan beberapa hal seperti mendengarkan musik, beristirahat sejenak dan mendengarkan musik terapi apakah kamu ingin mencobanya ? ucapkan kata kunci ya atau tidak
+                    #a02#Tampaknya kamu sedang dalam kondisi tekanan. Well, Stress adalah hal yang bisa terjadi kepada siapapun termasuk kamu. Stress sangat berpengaruh pada produktivitasmu. Tnamkan dalam pikiran dan hatimu bahwa tidak apa apa untuk tidak baik baik saja. Kamu hanya perlu menerima kondisi saat ini dan menguransi stressmu. Tapi perlu kamu ketahui bahwa stress dapat diatasi dengan beberapa hal seperti mendengarkan musik, beristirahat sejenak dan mendengarkan musik terapi apakah kamu ingin mencobanya ? ucapkan kata kunci ya atau tidak
                 </condition>
                 <condition name= "feel" value = "a01">
-                    Saya tahu bahwa cemas atau mengkhawatirkan sesuatu sangat berpengaruh pada mood produktivitas kamu. Tarik nafas dalam dalam kemudian hembuskan perlahan. Tanamkan pada pikiran kamu bahwa semua akan baik baik saja. Kamu hanya perlu melewatinya. Dan setelah kamu melewatinya kamu akan merasa lebih baik untuk menhadapi hal serupa kedepannya kami memliki beberapa opsi untuk menenangka sejenak kecemasan mu seperti audio hipnoterapi atau musik yang dapat menjernihkan pikiranmu, apakah kamu ingin mencobanya ? ucapkan kata kunci ya atau tidak
+                    #a01#Saya tahu bahwa cemas atau mengkhawatirkan sesuatu sangat berpengaruh pada mood produktivitas kamu. Tarik nafas dalam dalam kemudian hembuskan perlahan. Tanamkan pada pikiran kamu bahwa semua akan baik baik saja. Kamu hanya perlu melewatinya. Dan setelah kamu melewatinya kamu akan merasa lebih baik untuk menhadapi hal serupa kedepannya kami memliki beberapa opsi untuk menenangka sejenak kecemasan mu seperti audioterapi atau musik yang dapat menjernihkan pikiranmu, apakah kamu ingin mencobanya ? ucapkan kata kunci ya atau tidak
                 </condition>
                 <condition name= "feel" value = "a03">
-                    Insomnia atau susah tidur bisa terjadi ketika kamu tidak bisa menjernihkan pikiran dan mudah terdistraksi terhadap suara bising yang ada di sekitarmu. Ada beberapa alternatif untuk mengatasi susah tidur seperti menghitung secara pelan angka 1 sampai 10 atau membayangkan domba melewati pagar dan menghitungnya. Tapi jika tingkat susah tidur atau insomniamu tidak bisa tertolong dengan alternatif yang telah disebutkan, kami bisa merekomendasikan musik seperti lagu bertempo lambat atau musik dengan suara alam. apakah kamu ingin mencobanya ? ucapkan kata kunci ya atau tidak
+                    #a03#Insomnia atau susah tidur bisa terjadi ketika kamu tidak bisa menjernihkan pikiran dan mudah terdistraksi terhadap suara bising yang ada di sekitarmu. Ada beberapa alternatif untuk mengatasi susah tidur seperti menghitung secara pelan angka 1 sampai 10 atau membayangkan domba melewati pagar dan menghitungnya. Tapi jika tingkat susah tidur atau insomniamu tidak bisa tertolong dengan alternatif yang telah disebutkan, kami bisa merekomendasikan musik seperti lagu bertempo lambat atau musik dengan suara alam. apakah kamu ingin mencobanya ? ucapkan kata kunci ya atau tidak
                 </condition>
             </template>
         </category>
@@ -244,13 +238,13 @@
             <template>
                 <think><set name = "topic"><get name="feel"/></set></think>
                 <condition name= "feel" value = "a01">
-                   Apakah anda ingin memutar audio terapi atau musik ?
+                   #yes#Apakah anda ingin memutar audio terapi atau musik ?
                 </condition>
                 <condition name= "feel" value = "a02">
-                   Apakah anda ingin memutar audio terapi atau musik ?
+                   #yes#Apakah anda ingin memutar audio terapi atau musik ?
                 </condition>
                 <condition name= "feel" value = "a03">
-                    Apakah anda ingin memutar musik bertempo lambat atau musik dari suara alam?
+                    #yes#Apakah anda ingin memutar musik bertempo lambat atau musik dari suara alam?
                 </condition>
             </template>
         </category>
@@ -258,7 +252,7 @@
             <pattern><set>no</set></pattern>
             <template>
                  <think><set name = "topic">welcome</set></think>
-                 <srai>close1</srai>
+                 #no#<srai>close1</srai>
             </template>
         </category>
         

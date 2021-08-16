@@ -200,7 +200,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnTouchL
 
     private void configureSpeechRecognition() {
         //instanca SR
-        SpeechHelper helper = new SpeechHelper(this, 100);
+        SpeechHelper helper = new SpeechHelper(this);
         speechRecognizer = helper.getSpeechRecognizer();
         speechIntent = helper.getSpeechIntent();
         //mengatur Listener SR

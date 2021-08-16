@@ -6,3 +6,5 @@ OK
 YEY
 YAP
 YES
+IYA
+ADA

@@ -3,3 +3,4 @@ terapi
 hipnoterapi
 audio
 hipno
+diterapi

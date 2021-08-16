@@ -7,16 +7,7 @@
     android:background="@color/bgBlue"
     android:layout_height="match_parent"
     tools:context=".activities.ChatActivity">
-    <View
-        android:id="@+id/btn_gestur_chat"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:elevation="1dp"
-        android:background="@color/transparent"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bar_netra"
         android:layout_width="match_parent"
@@ -124,4 +115,13 @@
                 android:visibility="gone"
                 />
         </LinearLayout>
+    <View
+        android:id="@+id/btn_gestur_chat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/transparent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

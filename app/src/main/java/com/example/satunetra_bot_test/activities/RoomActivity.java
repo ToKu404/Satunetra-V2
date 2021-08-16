@@ -22,7 +22,7 @@ public class RoomActivity extends AppCompatActivity {
     private ImageView ivPause;
     private MediaPlayer mediaPlayer;
     private int sesi;
-    private TextView titleInstruction;
+//    private TextView titleInstruction;
     private ArrayList<String> links;
     private boolean connected;
     @Override
@@ -36,7 +36,9 @@ public class RoomActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if(connected){
-
+                    sesi=1;
+                    links = getIntent().getStringArrayListExtra("link");
+                    playOnline();
                 }else{
                     playOffline();
                 }
@@ -47,7 +49,7 @@ public class RoomActivity extends AppCompatActivity {
             public void onCompletion(MediaPlayer mp) {
                 if(sesi<=links.size() && connected){
                     sesi++;
-                    playVideo();
+                    playOnline();
                 }else{
                     onBackPressed();
                 }
@@ -55,10 +57,10 @@ public class RoomActivity extends AppCompatActivity {
         });
     }
 
-    private void playVideo(){
+    private void playOnline() {
         try {
             String link = links.get(sesi-1);
-            titleInstruction.setText("SESI "+sesi);
+//            titleInstruction.setText("SESI "+sesi);
             mediaPlayer.stop();
             mediaPlayer.reset();
             mediaPlayer.setDataSource(link);
@@ -70,9 +72,11 @@ public class RoomActivity extends AppCompatActivity {
                 }
             });
         }catch (Exception exception){
+            System.out.println(exception.getMessage());
             System.out.println(links.size());
         }
     }
+
 
     private void playOffline(){
         mediaPlayer.stop();

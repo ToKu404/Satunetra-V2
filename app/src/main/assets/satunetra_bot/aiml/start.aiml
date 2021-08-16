@@ -15,6 +15,7 @@
              Silakan sampaikan keluhanmu dan gunakan kata kunci seperti “Cemas”, “Stress”, “Insomnia”, “Susah Tidur”, dan “Khawatir”.
         </template>
     </category>
+
      <category>
         <pattern>W1</pattern>
         <template>
@@ -35,7 +36,7 @@
             <random>
                 <li>Hai %s! gimana kabarmu hari ini?</li>
                 <li>Halo %s! apa Kabar</li>
-                <li>$Pagi#Siang#Sore#Malam# %s! Apa kabar></li>
+                <li>$Pagi#Siang#Sore#Malam# %s! Apa kabar</li>
             </random>
         </template>
     </category>
@@ -75,4 +76,6 @@
             ucapkan "Riwayat" jika anda ingin mengakses riwayat terapi anda.
         </template>
     </category>
+
+
 </aiml>
